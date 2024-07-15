@@ -5,18 +5,37 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// (1) Material App
+    /// (2) home: Screen (UI)
+    /// (3) Scaffold ( widget )
+
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.orange,
+        // backgroundColor: Colors.blue,
         appBar: AppBar(
-          backgroundColor: Colors.red,
+          leading: Icon(
+            Icons.close,
+            size: 40,
+            color: Colors.blue,
+          ),
           title: Text(
             "Hello",
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.blue,
+              fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
           ),
+          actions: [
+            Icon(
+              Icons.delete,
+              color: Colors.red,
+            ),
+            Icon(
+              Icons.archive,
+              color: Colors.blue,
+            )
+          ],
           centerTitle: true,
         ),
       ),
