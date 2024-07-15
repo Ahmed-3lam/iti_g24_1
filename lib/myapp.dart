@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iti_g24_1/dummy_projects/whatsapp/whatsapp_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,35 +11,8 @@ class MyApp extends StatelessWidget {
     /// (3) Scaffold ( widget )
 
     return MaterialApp(
-      home: Scaffold(
-        // backgroundColor: Colors.blue,
-        appBar: AppBar(
-          leading: Icon(
-            Icons.close,
-            size: 40,
-            color: Colors.blue,
-          ),
-          title: Text(
-            "Hello",
-            style: TextStyle(
-              color: Colors.blue,
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          actions: [
-            Icon(
-              Icons.delete,
-              color: Colors.red,
-            ),
-            Icon(
-              Icons.archive,
-              color: Colors.blue,
-            )
-          ],
-          centerTitle: true,
-        ),
-      ),
+      debugShowCheckedModeBanner: false,
+      home: WhatsappScreen(),
     );
   }
 }
