@@ -16,6 +16,7 @@ List<Map> jsonList = [
     "message": "Hello From",
     "image": imageList[0],
     "createdAt": "9:30 AM",
+    "status": "recieved"
   },
   {
     "id": 548,
@@ -23,6 +24,7 @@ List<Map> jsonList = [
     "message": "Hello From",
     "image": imageList[1],
     "createdAt": "9:30 AM",
+    "status": "read"
   },
   {
     "id": 548,
@@ -30,6 +32,7 @@ List<Map> jsonList = [
     "message": "Hello From",
     "image": imageList[2],
     "createdAt": "9:30 AM",
+    "status": "read_recieved"
   },
   {
     "id": 548,
@@ -37,5 +40,6 @@ List<Map> jsonList = [
     "message": "Hello From",
     "image": imageList[2],
     "createdAt": "9:30 AM",
+    "status": "read_recieved"
   }
 ];

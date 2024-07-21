@@ -68,13 +68,29 @@ class MessangerScreen extends StatelessWidget {
             ],
           ),
           Spacer(),
-          Icon(
-            Icons.check_circle,
-            color: Colors.blue,
-          )
+          _buildIcon(chat),
         ],
       ),
     );
+  }
+
+  Widget _buildIcon(MessangerChatModel chat) {
+    if (chat.status == Status.READ_REC) {
+      return Icon(
+        Icons.check_circle,
+        color: Colors.blue,
+      );
+    } else if (chat.status == Status.READ) {
+      return Icon(
+        Icons.check_circle,
+        color: Colors.grey,
+      );
+    } else {
+      return CircleAvatar(
+        radius: 8,
+        backgroundColor: Colors.blue,
+      );
+    }
   }
 
   Container _buildStatusContainer() {
@@ -96,3 +112,9 @@ class MessangerScreen extends StatelessWidget {
     );
   }
 }
+
+/// image.asset
+/// image.network(" ")
+///
+/// AssetImage
+/// NetworkImage
