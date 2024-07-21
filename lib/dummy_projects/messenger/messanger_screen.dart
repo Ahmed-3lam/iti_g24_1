@@ -28,7 +28,7 @@ class MessangerScreen extends StatelessWidget {
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (c, i) => _chatItem(chatList[i]),
-            )
+            ),
           ],
         ),
       ),
