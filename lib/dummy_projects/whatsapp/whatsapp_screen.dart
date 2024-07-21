@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../../cons.dart';
+import '../models/chat.dart';
+
 class WhatsappScreen extends StatelessWidget {
   const WhatsappScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final List<ChatModel> chatList =
+        jsonList.map((e) => ChatModel.fromJson(e)).toList();
     return Scaffold(
       appBar: _appBar(),
       body: Padding(
@@ -23,20 +28,78 @@ class WhatsappScreen extends StatelessWidget {
               text: "Archive Chats",
               isCountVisable: true,
             ),
-            // Row(
-            //   children: [
-            //     Icon(
-            //       Icons.archive,
-            //       color: Colors.green,
-            //     ),
-            //     Text(" Archive Chats"),
-            //     Spacer(),
-            //     Text("1")
-            //   ],
-            // ),
+            SizedBox(
+              height: 10,
+            ),
+            ListView.separated(
+              shrinkWrap: true,
+              itemCount: chatList.length,
+              separatorBuilder: (context, index) => Divider(
+                color: Colors.grey.withOpacity(.2),
+              ),
+              itemBuilder: (context, index) => _buildChatItem(
+                name: chatList[index].name!,
+                message: chatList[index].message!,
+                image: chatList[index].image!,
+                createdAt: chatList[index].createdAt!,
+              ),
+            ),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        onPressed: () {},
+        child: Icon(
+          Icons.messenger,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildChatItem({
+    required String name,
+    required String message,
+    required String image,
+    required String createdAt,
+  }) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CircleAvatar(
+          radius: 30,
+          backgroundImage: NetworkImage(
+            image,
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                name,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                message,
+                style: TextStyle(color: Colors.grey),
+              ),
+            ],
+          ),
+        ),
+        Spacer(),
+        Text(
+          createdAt,
+          style: TextStyle(
+            color: Colors.grey,
+          ),
+        ),
+      ],
     );
   }
 
@@ -96,3 +159,34 @@ AppBar _appBar() {
     ],
   );
 }
+
+List<Map> jsonList = [
+  {
+    "id": 548,
+    "name": "Ahmed",
+    "message": "Hello From",
+    "image": imageList[0],
+    "createdAt": "9:30 AM",
+  },
+  {
+    "id": 548,
+    "name": "MMMM",
+    "message": "Hello From",
+    "image": imageList[1],
+    "createdAt": "9:30 AM",
+  },
+  {
+    "id": 548,
+    "name": "FFFF",
+    "message": "Hello From",
+    "image": imageList[2],
+    "createdAt": "9:30 AM",
+  },
+  {
+    "id": 548,
+    "name": "Ahmed",
+    "message": "Hello From",
+    "image": imageList[2],
+    "createdAt": "9:30 AM",
+  }
+];
