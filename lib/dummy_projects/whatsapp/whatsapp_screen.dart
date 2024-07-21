@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../cons.dart';
-import '../models/chat.dart';
+import 'models/chat.dart';
 
 class WhatsappScreen extends StatelessWidget {
   const WhatsappScreen({super.key});
