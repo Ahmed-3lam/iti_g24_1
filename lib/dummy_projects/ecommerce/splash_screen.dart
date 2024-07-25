@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:iti_g24_1/dummy_projects/ecommerce/auth_screen.dart';
+import 'package:iti_g24_1/dummy_projects/ecommerce/onboarding/onboarding_screen1.dart';
 
 bool isActive = true;
 
@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Future.delayed(Duration(seconds: 5))
           .then((v) => Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => AuthScreen()),
+                MaterialPageRoute(builder: (context) => OnboardingScreen()),
                 (Route<dynamic> route) => false,
               ));
     }

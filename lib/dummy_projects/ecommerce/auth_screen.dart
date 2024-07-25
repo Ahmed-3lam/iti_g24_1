@@ -15,7 +15,7 @@ class _AuthScreenState extends State<AuthScreen> {
   int num1 = 1;
   @override
   void initState() {
-    timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
+    timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
       if (num1 == 1) {
         num1 = 2;
       } else {
