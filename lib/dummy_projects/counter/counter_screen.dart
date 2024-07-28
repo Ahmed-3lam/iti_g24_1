@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iti_g24_1/dummy_projects/counter/cubit/counter_cubit.dart';
 
 class CounterScreen extends StatefulWidget {
   CounterScreen({super.key});
@@ -8,15 +10,24 @@ class CounterScreen extends StatefulWidget {
 }
 
 class _CounterScreenState extends State<CounterScreen> {
-  int counterText = 0;
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<CounterCubit>();
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: BlocBuilder<CounterCubit, CounterState>(
+          builder: (context, state) {
+            return Text(
+              cubit.counterText.toString(),
+              style: TextStyle(color: Colors.white),
+            );
+          },
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          counterText++;
-          print("==================" + counterText.toString());
-          setState(() {});
+          cubit.increment();
         },
         child: Icon(Icons.add),
       ),
@@ -24,11 +35,15 @@ class _CounterScreenState extends State<CounterScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              counterText.toString(),
-              style: TextStyle(
-                fontSize: 50,
-              ),
+            BlocBuilder<CounterCubit, CounterState>(
+              builder: (context, state) {
+                return Text(
+                  cubit.counterText.toString(),
+                  style: TextStyle(
+                    fontSize: 50,
+                  ),
+                );
+              },
             ),
           ],
         ),
