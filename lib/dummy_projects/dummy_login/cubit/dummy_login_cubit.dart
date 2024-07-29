@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:iti_g24_1/dummy_projects/dummy_login/cubit/Api_end_points.dart';
+import 'package:flutter/material.dart';
+import 'package:iti_g24_1/dummy_projects/dummy_login/helpers/Api_end_points.dart';
 import 'package:iti_g24_1/dummy_projects/dummy_login/helpers/dummy_dio_helper.dart';
-import 'package:meta/meta.dart';
 
 part 'dummy_login_state.dart';
 
@@ -11,12 +11,26 @@ class DummyLoginCubit extends Cubit<DummyLoginState> {
   void login({
     required String email,
     required String password,
-  }) {
-    final response = DummyDioHelper.postData(path: ApiEndPoints.login, body: {
-      "email": email,
-      "password": password,
-    });
-    print(response);
-    if (response != null) {}
+  }) async {
+    emit(DummyLoginLoading());
+    try {
+      final response =
+          await DummyDioHelper.postData(path: ApiEndPoints.login, body: {
+        "email": email,
+        "password": password,
+      });
+
+      if (response.data["status"] == true) {
+        emit(DummyLoginSuccess());
+      } else {
+        emit(DummyLoginError());
+      }
+    } catch (e) {
+      print(e.toString());
+      emit(DummyLoginError());
+    }
   }
 }
+
+/// 3lam.ahmed@gmail.com
+/// 123456

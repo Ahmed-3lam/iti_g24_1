@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
+import 'package:iti_g24_1/dummy_projects/dummy_login/helpers/Api_end_points.dart';
+import 'package:iti_g24_1/dummy_projects/dummy_login/helpers/dummy_dio_helper.dart';
 import 'package:meta/meta.dart';
 
 import '../post_model.dart';
@@ -10,14 +11,11 @@ class ApiListCubit extends Cubit<ApiListState> {
   ApiListCubit() : super(ApiListInitial());
 
   List<PostModel> myList = [];
-  final dio = Dio();
 
   Future fetchData() async {
     emit(ApiListLoading());
     try {
-      final response = await dio.get(
-        'https://jsonplaceholder.typicode.com/posts',
-      );
+      final response = await DummyDioHelper.getData(path: ApiEndPoints.apiList);
       if (response.statusCode == 200) {
         List tempList = response.data;
         myList = tempList.map((e) => PostModel.fromJson(e)).toList();
