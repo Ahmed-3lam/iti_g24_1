@@ -33,6 +33,7 @@ class _DummyLoginScreenState extends State<DummyLoginScreen> {
                   child: Image.asset(
                     "assets/images/final-image.jpg",
                     height: 100,
+                    key: UniqueKey(),
                     width: 100,
                   ),
                 ),
@@ -41,6 +42,7 @@ class _DummyLoginScreenState extends State<DummyLoginScreen> {
                 ),
                 Text(
                   "Welcome back",
+                  key: UniqueKey(),
                   style: TextStyle(
                     color: Color(0xFFCE6F81),
                     fontSize: 20,
@@ -51,11 +53,13 @@ class _DummyLoginScreenState extends State<DummyLoginScreen> {
                   height: 10,
                 ),
                 Container(
+                  key: const Key('email2'),
                   decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: BorderRadius.circular(12)),
                   child: TextFormField(
                     controller: _emailController,
+                    key: const Key('email22'),
                     validator: (value) {
                       if (!value!.emailValid) {
                         return "Email isn't valid";
@@ -76,6 +80,7 @@ class _DummyLoginScreenState extends State<DummyLoginScreen> {
                       color: Colors.white30,
                       borderRadius: BorderRadius.circular(12)),
                   child: TextFormField(
+                    key: const Key('password22'),
                     controller: _passwordController,
                     obscureText: obscureText,
                     validator: (value) {
@@ -108,7 +113,10 @@ class _DummyLoginScreenState extends State<DummyLoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text("Forget Password?"),
+                    Text(
+                      "Forget Password?",
+                      key: UniqueKey(),
+                    ),
                   ],
                 ),
                 SizedBox(
@@ -131,6 +139,7 @@ class _DummyLoginScreenState extends State<DummyLoginScreen> {
                     child: Center(
                       child: Text(
                         "Login",
+                        key: UniqueKey(),
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
