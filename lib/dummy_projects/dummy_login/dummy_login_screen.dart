@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iti_g24_1/dummy_projects/dummy_login/cubit/dummy_login_cubit.dart';
 import 'package:iti_g24_1/dummy_projects/dummy_login/email_validation_extension.dart';
 
 class DummyLoginScreen extends StatefulWidget {
-  DummyLoginScreen({super.key});
+  const DummyLoginScreen({super.key});
 
   @override
   State<DummyLoginScreen> createState() => _DummyLoginScreenState();
@@ -14,11 +16,14 @@ class _DummyLoginScreenState extends State<DummyLoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    print("Build");
-
+    final cubit = context.read<DummyLoginCubit>();
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: Padding(
@@ -42,7 +47,6 @@ class _DummyLoginScreenState extends State<DummyLoginScreen> {
                 ),
                 Text(
                   "Welcome back",
-                  key: UniqueKey(),
                   style: TextStyle(
                     color: Color(0xFFCE6F81),
                     fontSize: 20,
@@ -53,13 +57,11 @@ class _DummyLoginScreenState extends State<DummyLoginScreen> {
                   height: 10,
                 ),
                 Container(
-                  key: const Key('email2'),
                   decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: BorderRadius.circular(12)),
                   child: TextFormField(
                     controller: _emailController,
-                    key: const Key('email22'),
                     validator: (value) {
                       if (!value!.emailValid) {
                         return "Email isn't valid";
@@ -80,13 +82,12 @@ class _DummyLoginScreenState extends State<DummyLoginScreen> {
                       color: Colors.white30,
                       borderRadius: BorderRadius.circular(12)),
                   child: TextFormField(
-                    key: const Key('password22'),
                     controller: _passwordController,
                     obscureText: obscureText,
                     validator: (value) {
-                      if (value!.length < 10) {
-                        return "Password should be more than 10 letters";
-                      }
+                      // if (value!.length < 10) {
+                      //   return "Password should be more than 10 letters";
+                      // }
                     },
                     decoration: InputDecoration(
                       label: Text("Password"),
@@ -125,9 +126,10 @@ class _DummyLoginScreenState extends State<DummyLoginScreen> {
                 InkWell(
                   onTap: () {
                     if (_formKey.currentState!.validate()) {
-                      print("========= email is : " + _emailController.text);
-                      print("========= password is : " +
-                          _passwordController.text);
+                      context.read<DummyLoginCubit>().login(
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                          );
                     }
                   },
                   child: Container(
@@ -139,7 +141,6 @@ class _DummyLoginScreenState extends State<DummyLoginScreen> {
                     child: Center(
                       child: Text(
                         "Login",
-                        key: UniqueKey(),
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
@@ -156,3 +157,8 @@ class _DummyLoginScreenState extends State<DummyLoginScreen> {
     );
   }
 }
+
+/// Method:PoST
+///Path:https://student.valuxapps.com/api/login
+/// body: email , password
+/// headers: lang ,Content-Type: application/json
