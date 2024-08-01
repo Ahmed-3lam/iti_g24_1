@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 import 'dummy_projects/dummy_login/cubit/dummy_login_cubit.dart';
-import 'dummy_projects/dummy_login/dummy_login_screen.dart';
+import 'dummy_projects/ecommerce/splash_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       create: (context) => DummyLoginCubit(),
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: DummyLoginScreen(),
+        home: SplashScreen(),
       ),
     );
   }

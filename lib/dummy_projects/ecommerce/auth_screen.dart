@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iti_g24_1/dummy_projects/ecommerce/kColors.dart';
+import 'package:iti_g24_1/dummy_projects/ecommerce/login/login_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -62,17 +64,22 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 ),
                 Spacer(),
-                Container(
-                  height: 56,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: KColors.primaryColor),
-                  child: Center(
-                    child: Text(
-                      "Continue with Email or Phone",
-                      style: TextStyle(
-                        color: Colors.white,
+                InkWell(
+                  onTap: () {
+                    Get.to(LoginScreen());
+                  },
+                  child: Container(
+                    height: 56,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: KColors.primaryColor),
+                    child: Center(
+                      child: Text(
+                        "Continue with Email or Phone",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
