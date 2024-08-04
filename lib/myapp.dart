@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-import 'dummy_projects/dummy_login/cubit/dummy_login_cubit.dart';
-import 'dummy_projects/ecommerce/splash_screen.dart';
+import 'dummy_projects/ecommerce/presentation/login/cubit/login_cubit.dart';
+import 'dummy_projects/ecommerce/presentation/splash_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     /// (3) Scaffold ( widget )
 
     return BlocProvider(
-      create: (context) => DummyLoginCubit(),
+      create: (context) => LoginCubit(),
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),

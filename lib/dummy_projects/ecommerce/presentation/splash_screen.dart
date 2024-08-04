@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:iti_g24_1/dummy_projects/ecommerce/onboarding/onboarding_screen1.dart';
+
+import 'onboarding/onboarding_screen1.dart';
 
 bool isActive = true;
 

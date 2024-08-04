@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iti_g24_1/dummy_projects/ecommerce/auth_screen.dart';
-import 'package:iti_g24_1/dummy_projects/ecommerce/kColors.dart';
+import 'package:iti_g24_1/dummy_projects/ecommerce/helpers/kColors.dart';
 
-class OnboardingScreen3 extends StatefulWidget {
-  const OnboardingScreen3({super.key});
+import 'onboarding_screen3.dart';
+
+class OnboardingScreen2 extends StatefulWidget {
+  const OnboardingScreen2({super.key});
 
   @override
-  State<OnboardingScreen3> createState() => _OnboardingScreen3State();
+  State<OnboardingScreen2> createState() => _OnboardingScreenState2();
 }
 
-class _OnboardingScreen3State extends State<OnboardingScreen3> {
+class _OnboardingScreenState2 extends State<OnboardingScreen2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +25,7 @@ class _OnboardingScreen3State extends State<OnboardingScreen3> {
               Container(
                   height: 300,
                   width: 300,
-                  child: Image.asset("assets/images/onboarding3.png")),
+                  child: Image.asset("assets/images/onboarding2.png")),
               SizedBox(
                 height: 20,
               ),
@@ -49,12 +50,12 @@ class _OnboardingScreen3State extends State<OnboardingScreen3> {
               Spacer(),
               InkWell(
                 onTap: () {
-                  Get.offAll(AuthScreen());
+                  Get.to(OnboardingScreen3());
                 },
                 child: Container(
                   height: 100,
                   child: Image.asset(
-                    "assets/images/next3.png",
+                    "assets/images/next2.png",
                   ),
                 ),
               )

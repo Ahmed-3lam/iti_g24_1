@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iti_g24_1/dummy_projects/ecommerce/kColors.dart';
-import 'package:iti_g24_1/dummy_projects/ecommerce/login/login_screen.dart';
+import 'package:iti_g24_1/dummy_projects/ecommerce/helpers/kColors.dart';
+
+import 'login/login_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
