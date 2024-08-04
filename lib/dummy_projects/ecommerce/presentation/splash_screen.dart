@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../helpers/hive_helper.dart';
+import 'main/main_screen.dart';
 import 'onboarding/onboarding_screen1.dart';
 
 bool isActive = true;
@@ -33,17 +36,24 @@ class _SplashScreenState extends State<SplashScreen> {
     }
 
     isActive = false;
-    if (!isActive) {
-      timer!.cancel();
-      Future.delayed(Duration(seconds: 5))
-          .then((v) => Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => OnboardingScreen()),
-                (Route<dynamic> route) => false,
-              ));
-    }
 
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (!isActive) {
+      timer!.cancel();
+      print("==============" + HiveHelper.getToken().toString());
+      if (HiveHelper.getToken() == null) {
+        Future.delayed(Duration(seconds: 3))
+            .then((v) => Get.offAll(() => OnboardingScreen()));
+      } else {
+        Future.delayed(Duration(seconds: 3))
+            .then((v) => Get.offAll(() => MainScreen()));
+      }
+    }
+    super.didChangeDependencies();
   }
 
   @override

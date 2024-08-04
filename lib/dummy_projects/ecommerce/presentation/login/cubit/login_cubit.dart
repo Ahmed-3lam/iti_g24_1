@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:iti_g24_1/dummy_projects/ecommerce/helpers/api_const.dart';
 import 'package:iti_g24_1/dummy_projects/ecommerce/helpers/api_helper.dart';
+import 'package:iti_g24_1/dummy_projects/ecommerce/helpers/hive_helper.dart';
 import 'package:meta/meta.dart';
 
 import '../model/login_model.dart';
@@ -27,6 +28,7 @@ class LoginCubit extends Cubit<LoginState> {
       );
       loginModel = LoginModel.fromJson(response.data);
       if (loginModel.status == true) {
+        HiveHelper.saveToken(loginModel.data!.token!);
         emit(LoginSuccess(loginModel.message!));
       } else {
         emit(LoginError(loginModel.message!));

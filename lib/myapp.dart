@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:iti_g24_1/dummy_projects/ecommerce/presentation/home/cubit/home_cubit.dart';
 
 import 'dummy_projects/ecommerce/presentation/login/cubit/login_cubit.dart';
 import 'dummy_projects/ecommerce/presentation/splash_screen.dart';
@@ -14,12 +15,14 @@ class MyApp extends StatelessWidget {
     /// (2) home: Screen (UI)
     /// (3) Scaffold ( widget )
 
-    return BlocProvider(
-      create: (context) => LoginCubit(),
-      child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
-      ),
-    );
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => LoginCubit()),
+          BlocProvider(create: (context) => HomeCubit()..getbanners()),
+        ],
+        child: GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: SplashScreen(),
+        ));
   }
 }

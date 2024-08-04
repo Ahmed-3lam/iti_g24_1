@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iti_g24_1/dummy_projects/ecommerce/presentation/home/home_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -10,6 +11,8 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: HomeScreen(),
+    );
   }
 }
