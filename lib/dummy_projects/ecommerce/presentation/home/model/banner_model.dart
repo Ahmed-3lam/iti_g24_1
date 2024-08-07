@@ -11,7 +11,7 @@ class BannerModel {
     if (json['data'] != null) {
       data = <BannerData>[];
       json['data'].forEach((v) {
-        data!.add(new BannerData.fromJson(v));
+        data!.add(BannerData.fromJson(v));
       });
     }
   }

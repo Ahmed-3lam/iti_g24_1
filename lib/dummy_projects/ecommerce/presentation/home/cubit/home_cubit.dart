@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:iti_g24_1/dummy_projects/ecommerce/presentation/home/model/ProductsModel.dart';
 import 'package:iti_g24_1/dummy_projects/ecommerce/presentation/home/model/banner_model.dart';
 import 'package:meta/meta.dart';
 
@@ -11,6 +12,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
 
   BannerModel bannerModel = BannerModel();
+  ProductsModel productsModel = ProductsModel();
 
   void getbanners() async {
     emit(HomeBannerLoading());
@@ -26,6 +28,23 @@ class HomeCubit extends Cubit<HomeState> {
       }
     } catch (e) {
       emit(HomeBannerError());
+    }
+  }
+
+  void getPopularProducts() async {
+    emit(HomeProductsLoading());
+    try {
+      final response = await ApiHelper.instance.get(
+        ApiConst.PRODUCTS,
+      );
+      productsModel = ProductsModel.fromJson(response.data);
+      if (productsModel.status == true) {
+        emit(HomeProductsSuccess());
+      } else {
+        emit(HomeProductsError());
+      }
+    } catch (e) {
+      emit(HomeProductsError());
     }
   }
 }
